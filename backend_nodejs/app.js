@@ -12,7 +12,7 @@ mongoose
     'mongodb+srv://seijihg:1986@ladybugair-kwugm.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true }
     )
 .then(result => {
-    app.listen(8080)
+    app.listen(process.env.PORT || 8080)
 })
 .catch(err => console.log(err))
 
