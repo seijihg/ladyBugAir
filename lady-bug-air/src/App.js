@@ -1,16 +1,12 @@
 import React from 'react';
 import './css/App.css';
-import NavBar from './components/NavBar'
-import Body from './components/Body';
-import Footer from './components/Footer';
+import MainContainer from './components/Containers/MainContainer';
 
 function App() {
   return (
-    <div className="grid">
-      <NavBar />
-      <Body />
-      <Footer />
-    </div>
+    <>
+     <MainContainer />
+    </>
   );
 }
 

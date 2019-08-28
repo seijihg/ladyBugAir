@@ -8,7 +8,7 @@ const allLocations = () => {
 }
 //<--
 
-export default = {
+export default {
   logInApi,
   allLocations
 }
