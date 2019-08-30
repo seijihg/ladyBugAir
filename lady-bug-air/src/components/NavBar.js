@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import Login from "./Login";
 
 class NavBar extends React.Component {
   render() {
@@ -23,6 +24,9 @@ class NavBar extends React.Component {
             <li>Sign in</li>
           </ul>
         </nav>
+        <div className="login_form">
+          <Login />
+        </div>
       </>
     );
   }
