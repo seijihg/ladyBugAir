@@ -1,13 +1,14 @@
 import React from 'react'
 import NavBar from '../NavBar'
-import Body from '../Body';
 import Footer from '../Footer';
+import BodyContainer from './BodyContainer';
+
 
 const MainContainer = () => {
   return (
     <div>
       <NavBar />
-      <Body />
+      <BodyContainer />
       <Footer />
     </div>
   )
