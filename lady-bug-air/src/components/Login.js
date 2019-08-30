@@ -64,6 +64,7 @@ const Login = () => {
             name="email"
             className="login_email"
             required
+            autoComplete="email"
           />
         </div>
         <div>
@@ -73,6 +74,7 @@ const Login = () => {
             name="password"
             className="login_password"
             required
+            autoComplete="current-password"
           />
         </div>
         <div>
@@ -83,7 +85,7 @@ const Login = () => {
           <a href="javascript:void(0)">Forgot password?</a>
         </div>
         <div>
-          <input type="submit" value="Subscribe!" />
+          <input type="submit" value="Login!" />
         </div>
       </form>
     </>

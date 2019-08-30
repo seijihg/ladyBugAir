@@ -9,7 +9,7 @@ const mongoose = require("mongoose")
 
 mongoose
 .connect(
-    'mongodb+srv://seijihg:1986@ladybugair-kwugm.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true }
+    process.env.MONGODB, { useNewUrlParser: true }
     )
 .then(result => {
     app.listen(process.env.PORT || 8080)
