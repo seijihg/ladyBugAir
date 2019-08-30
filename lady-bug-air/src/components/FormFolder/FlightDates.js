@@ -5,12 +5,12 @@ const dateNow = () => {
   return str.substring(0, str.indexOf("T"));
 };
 
-const FlightDates = (props) => {
+const FlightDates = ({dateFrom, dateTo, dateFromHandler, dateToHandler}) => {
 
   return (
     <>
-      <input name="start" type="date" min={dateNow()} onChange={null} value={null}></input>
-      <input name="return" type="date" min={null} onChange={null} value={null}></input>
+      <input name="start" type="date" min={dateNow()} onChange={dateFromHandler} value={dateFrom}></input>
+      <input name="return" type="date" min={dateFrom} onChange={dateToHandler} value={dateTo}></input>
     </>
   );
 };
