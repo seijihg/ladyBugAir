@@ -1,15 +1,21 @@
-import React from 'react';
-import './css/App.css';
-import MainContainer from './components/Containers/MainContainer';
-import { BrowserRouter as Router, Route } from "react-router-dom"
-import DashboardContainer from './components/Containers/DashboardContainer';
+import React from "react";
+import "./css/App.css";
+import { Route } from "react-router-dom";
+import NavBar from './components/NavBar'
+import Footer from './components/Footer';
+import BodyContainer from './components/Containers/BodyContainer';
+import SearchResultsContainer from './components/SearchResultsFolder/SearchResultsContainer';
+import ViewDealContainer from './components/ViewDealBookFolder/VIewDealContainer'
 
 function App() {
   return (
-    <Router>
-        <Route exact path='/' render={() => <MainContainer />}/>
-        <Route exact path='/profile/dashboard' render={() => <DashboardContainer />}/>
-    </Router>
+    <div>
+      <NavBar />
+      <Route exact path="/" render={(props) => <BodyContainer {...props}/>} />
+      <Route exact path="/search_results" render={(props) => <SearchResultsContainer {...props}/>} />
+      <Route exact path="/view_deal" render={(props) => <ViewDealContainer {...props}/>} />
+      <Footer />
+    </div>
   );
 }
 

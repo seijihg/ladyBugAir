@@ -1,11 +1,11 @@
 import React from 'react'
 
-const SingleReturnSelect = (props) => {
+const SingleReturnSelect = ({notsingle, singleReturnState}) => {
   return (
     <>
-    <select>
-        <option value={true}>Return</option>
-        <option value={false}>Single</option>
+    <select onChange={singleReturnState} value={notsingle}>
+        <option value="return">Return</option>
+        <option value="single">One-way</option>
     </select>
     </>
   )

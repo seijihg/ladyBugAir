@@ -17,6 +17,15 @@ function getMatchingLanguages(value, suggestions) {
   );
 }
 //<-----END
+//<-----SEARCH FLIGHTS
+const searchFlights = (body) => {
+  return dispatch => {
+    dispatch({type:"SEARCHING_FLIGHTS"})
+    API.searchFlights(body)
+    .then(flights => dispatch({type: "SEARCH_FLIGHTS_RESULTS", flights}))
+  }
+}
+//----->END
 //----->DEPARTURE
 const maybeUpdateSuggestions = (suggestions, value) => {
   return { type: "MAYBE_UPDATE_SUGGESTIONS", suggestions, value };
@@ -84,6 +93,25 @@ const singleReturnState = (single) => {
   }
 }
 //<-----END
+//<-----PEOPLE COUNT
+const addAdult = () => {
+  return dispatch => {
+    dispatch({type: "ADD_ADULT"})
+  }
+}
+const removeAdult = () => {
+  return dispatch => {
+    dispatch({type: "REMOVE_ADULT"})
+  }
+}
+//<-----END
+//<-----FLIGHT CLASS
+const flightClass = (classtype) => {
+  return dispatch => {
+    dispatch({type: "CLASS_TYPE", classtype})
+  }
+}
+//<-----END
 export default { 
   loadSuggestions, 
   updateInputValue, 
@@ -92,5 +120,9 @@ export default {
   updateInputValueArrival,
   dateFrom,
   dateTo,
-  singleReturnState
+  singleReturnState,
+  addAdult,
+  removeAdult,
+  flightClass,
+  searchFlights
 };

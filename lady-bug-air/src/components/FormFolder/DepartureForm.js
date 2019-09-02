@@ -4,7 +4,7 @@ import Autosuggest from "react-autosuggest";
 const DepartureForm = ({ suggestions, preventSubmit, clearSuggestions, updateInputValue, loadSuggestions, value }) => {
   
   const getSuggestionValue = suggestion => {
-    return (`${suggestion.airport_name} (${suggestion.iata})`)
+    return (`${suggestion.airport_name} ${suggestion.iata.toUpperCase()}`)
   };
   const renderSuggestion = (suggestion) => {
     return <span>{`${suggestion.airport_name} (${suggestion.iata})`}</span>;
