@@ -3,6 +3,9 @@ const logInApi = baseApi + "/auth/login";
 const locationsBase = baseApi + "/api_v1/locations";
 const searchApi = baseApi + "/api_v1/search";
 const offerApi = baseApi + "/api_v1/offer"
+const authenticateApi = baseApi + "/auth/authenticate"
+const createUserApi = baseApi + "/api_v1/users"
+const bookFlightApi = baseApi + "/api_v1/book"
 
 //--> Locations
 const allLocations = () => {
@@ -31,9 +34,41 @@ const makeOfferFlight = offerId => {
   })
   .then(resp => resp.json())
 }
+const createUser = (userBody) => {
+  return fetch(createUserApi, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(userBody)
+  })
+}
+
+const authenticateUser = (token) => {
+  return fetch(authenticateApi, {
+    headers: {
+      Authorization: "Bearer " + token
+    }
+  })
+  .then(resp => resp.json())
+}
+const bookFlight = (bookFlightBody) => {
+  return fetch(bookFlightApi, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(bookFlightBody)
+  })
+}
+
+
 export default {
   logInApi,
   allLocations,
   searchFlights,
-  makeOfferFlight
+  makeOfferFlight,
+  authenticateUser,
+  createUser,
+  bookFlight
 };

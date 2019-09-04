@@ -1,6 +1,7 @@
 const defaultState = {
   details: null,
-  isLoading: false
+  isLoading: false,
+  passengers: [],
 }
 
 const offerCardReducer = (state = defaultState, action) => {
@@ -18,6 +19,19 @@ const offerCardReducer = (state = defaultState, action) => {
         ...state,
         isLoading: false,
         details: action.deal.details
+      }
+    case "ADD_OBJ_CONTROLLED_INPUT":
+      return {
+        ...state,
+        passengers: [...state.passengers, action.obj]
+      }
+    case "INPUT_TYPE":
+      return {
+        ...state,
+        passengers: state.passengers.map((pass, idx) => {
+          if (idx === action.title.idx) {pass.title = action.title.title}
+          return pass
+        })
       }
     default:
       return state

@@ -4,7 +4,7 @@ const BagDetails = ({bagRefId, descriptions}) => {
   const getDescription = () => {
     return descriptions.map(desc => {
       return (
-        <li>
+        <li key={Math.floor(Math.random() * 10000) + 1 }>
           {desc.Text}
         </li>
       )

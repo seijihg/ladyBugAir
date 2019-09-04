@@ -4,12 +4,10 @@ const Schema = mongoose.Schema
 const userSchema = new Schema({
     first_name: {
         type: String,
-        required: true,
         lowercase: true
     },
     last_name: {
         type: String,
-        required: true,
         lowercase: true
     },
     dob: {
@@ -26,12 +24,10 @@ const userSchema = new Schema({
     },
     title: {
         type: String,
-        required: true,
         lowercase: true
     },
     admin: {
-        type: Boolean,
-        required: true,
+        type: Boolean
     },
     bookings: {
         type: Schema.Types.ObjectId,
