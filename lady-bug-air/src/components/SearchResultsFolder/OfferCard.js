@@ -22,6 +22,7 @@ const OfferCard = ({ offer, flights, destinations, saveViewDealToState, history 
       };
       return (
         <OfferJourneyCard
+          key={Math.floor(Math.random() * 10000) + 1 }
           destination={getDestination()[0]}
           segments={getFlightSegments()}
           provider={provider}
@@ -31,7 +32,7 @@ const OfferCard = ({ offer, flights, destinations, saveViewDealToState, history 
   };
   const viewDealHandler = () => {
     saveViewDealToState(offerId)
-    history.push("/view_deal")
+    history.push("/search_results/view_deal")
   }
   return (
     <div>

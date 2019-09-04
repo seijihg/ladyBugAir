@@ -7,7 +7,25 @@ const saveViewDealToState = offerId => {
     .then(deal => dispatch({type: "DEAL_RESULTS", deal}))
   }
 }
-
-export default {
-  saveViewDealToState
+const savePassengersToState = passengers => {
+  return dispatch => {
+    dispatch({type: "ADD_PASSENGERS", passengers})
+  }
 }
+const addPassengerInputController = (obj) => {
+  return dispatch => {
+    dispatch({type:"ADD_OBJ_CONTROLLED_INPUT", obj})
+  }
+}
+const onChangeTitle = (title) => {
+  return dispatch => {
+    dispatch({type:"INPUT_TYPE", title})
+  }
+}
+
+  export default {
+    saveViewDealToState,
+    savePassengersToState,
+    addPassengerInputController,
+    onChangeTitle
+  }
