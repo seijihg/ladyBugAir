@@ -37,6 +37,7 @@ app.use(apiv1, flightsRoutes)
 const locationRoutes = require('./routes/location_routes')
 app.use(apiv1, locationRoutes)
 
+
 //--
 
 const authRoutes = require('./routes/auth_routes')

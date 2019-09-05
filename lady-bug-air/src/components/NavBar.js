@@ -1,9 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import Login from "./Login";
+import AuthenticationContainer from "./Authentication/AuthenticationContainer";
+import MenuDashboardContainer from "./UserDashboard/MenuDashboardContainer";
 
 class NavBar extends React.Component {
   render() {
+    const { userLoggedIn, userInfomation, logoutHandler } = this.props;
     return (
       <>
         <nav id="navbar">
@@ -16,16 +18,17 @@ class NavBar extends React.Component {
                 Flights
               </NavLink>
             </li>
-            <li>
-              <NavLink exact to="/member">
-                Member
-              </NavLink>
-            </li>
-            <li>Sign in</li>
+            {userLoggedIn ? (
+              <li>
+                  <MenuDashboardContainer logoutHandler={logoutHandler}/>
+              </li>
+            ) : (
+              <li>Sign in</li>
+            )}
           </ul>
         </nav>
         <div className="login_form">
-          <Login />
+          <AuthenticationContainer />
         </div>
       </>
     );
