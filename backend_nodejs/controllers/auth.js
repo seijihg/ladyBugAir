@@ -1,12 +1,15 @@
 const User = require("../models/user");
+const Flight = require("../models/flight");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+
 
 exports.login = (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
 
   User.findOne({ email: email })
+    .populate({path: "bookings"})
     .then(user => {
       if (!user) {
         const error = new Error("An user with this email could not be found.");
@@ -37,7 +40,8 @@ exports.login = (req, res, next) => {
           id: loadedUser._id.toString(),
           title: loadedUser.title,
           first_name: loadedUser.first_name,
-          last_name: loadedUser.last_name
+          last_name: loadedUser.last_name,
+          bookings: loadedUser.bookings
         }
       });
     })
@@ -51,7 +55,9 @@ exports.login = (req, res, next) => {
 
 exports.authenticate = (req, res, next) => {
   userId = req.userId;
-  User.findOne({ _id: userId }).then(data => {
+  User.findOne({ _id: userId })
+  .populate({path: "bookings"})
+  .then(data => {
       res.status(200).json({
           data: {
               dob: data.dob,
@@ -59,7 +65,8 @@ exports.authenticate = (req, res, next) => {
               id: data._id.toString(),
               title: data.title,
               first_name: data.first_name,
-              last_name: data.last_name
+              last_name: data.last_name,
+              bookings: data.bookings
           }
       })
   })

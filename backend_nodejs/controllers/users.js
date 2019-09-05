@@ -27,7 +27,6 @@ exports.createUser = (req, res, next) => {
   const title = req.body.title;
   const email = req.body.email;
   const password = req.body.password;
-  const admin = req.body.admin;
   User.findOne({ email: email })
     .then(user => {
       if (user) {
@@ -46,7 +45,8 @@ exports.createUser = (req, res, next) => {
         last_name: last_name,
         password: hashedPass,
         dob: dob,
-        admin: admin
+        admin: false,
+        bookings: []
       });
       return user.save();
     })
@@ -58,7 +58,16 @@ exports.createUser = (req, res, next) => {
         {expiresIn: '1h'})
         res.status(200).json({
             token: token,
-            message:"User Created"
+            message:"User Created",
+            data: {
+              dob: user.dob,
+              email: user.email,
+              id: user._id.toString(),
+              title: user.title,
+              first_name: user.first_name,
+              last_name: user.last_name,
+              bookings: user.bookings
+            }
         })
     })
     .catch(err => {

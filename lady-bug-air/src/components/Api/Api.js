@@ -52,11 +52,12 @@ const authenticateUser = (token) => {
   })
   .then(resp => resp.json())
 }
-const bookFlight = (bookFlightBody) => {
+const bookFlight = (bookFlightBody, token) => {
   return fetch(bookFlightApi, {
     method: "POST",
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      Authorization: "Bearer " + token
     },
     body: JSON.stringify(bookFlightBody)
   })

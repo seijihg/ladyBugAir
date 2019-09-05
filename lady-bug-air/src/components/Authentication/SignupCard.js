@@ -2,7 +2,7 @@ import React from 'react'
 import InputEmail from "./InputEmail";
 import InputPassword from "./InputPassword";
 
-const SignupCard = ({signUpHandler, loginEmailDetail, email, loginPasswordDetail, password}) => {
+const SignupCard = ({signUpHandler, loginEmailDetail, email, loginPasswordDetail, password, loginSignupHandler}) => {
   return (
     <div>
     <h1>Sign up and save</h1>
@@ -21,7 +21,7 @@ const SignupCard = ({signUpHandler, loginEmailDetail, email, loginPasswordDetail
       </div>
     </form>
     <p>Already have an account?</p>
-    <button>Sign in</button>
+    <button onClick={loginSignupHandler}>Sign in</button>
     </div>
   )
 }

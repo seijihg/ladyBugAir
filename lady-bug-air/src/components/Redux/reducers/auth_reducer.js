@@ -27,10 +27,18 @@ const authReducer = (state = defaultState, action) => {
         password: action.password
       }
     case "USER_GET_AUTHENTICATED":
+      console.log("USER_GET_AUTHENTICATED")
       return {
         ...state,
         userLoggedIn: true,
-        userInfomation: action.data.data
+        userInfomation: action.data.data,
+        email: "",
+        password:""
+      }
+    case  "SWITCH_FORM":
+      return {
+        ...state,
+        signinForm: !state.signinForm
       }
     default:
       return state

@@ -1,9 +1,16 @@
-import React from 'react'
-const PassengerForm = ({savePassengersHandler, pass_input, passengerFormHandlerInput}) => {
+import React from "react";
+const PassengerForm = ({
+  pass_input,
+  passengerFormHandlerInput
+}) => {
   return (
     <div>
-      <form onSubmit={savePassengersHandler}>
-        <select id="title" value={pass_input.title} onChange={(event) => passengerFormHandlerInput(event, pass_input.idx)}>
+        <select
+          id="title"
+          value={pass_input.title}
+          onChange={event => passengerFormHandlerInput(event, pass_input.idx)}
+          name="title"
+        >
           <option value="">Please Select</option>
           <option value="mr">Mr</option>
           <option value="mrs">Mrs</option>
@@ -11,23 +18,42 @@ const PassengerForm = ({savePassengersHandler, pass_input, passengerFormHandlerI
           <option value="ms">Ms</option>
         </select>
         <label for="name">Enter your first name: </label>
-        <input id="name" value={pass_input.first_name}></input>
+        <input
+          id="name"
+          name="first_name"
+          value={pass_input.first_name}
+          onChange={event => passengerFormHandlerInput(event, pass_input.idx)}
+        ></input>
         <br></br>
-        <label for="lastname" value={pass_input.lastname}>Enter your last name: </label>
-        <input id="lastname"></input>
+        <label for="last_name" >
+          Enter your last name:
+        </label>
+        <input
+          value={pass_input.last_name}
+          id="last_name"
+          name="last_name"
+          onChange={event => passengerFormHandlerInput(event, pass_input.idx)}
+        ></input>
         <br></br>
         <label for="phone">Enter your phone: </label>
-        <input id="phone" type="number" value={pass_input.phone}></input>
+        <input
+          id="phone"
+          name="phone"
+          type="number"
+          value={pass_input.phone}
+          onChange={event => passengerFormHandlerInput(event, pass_input.idx)}
+        ></input>
         <br></br>
         <label for="email">Enter your email: </label>
-        <input id="email" type="email" value={pass_input.email}></input>
-        <br></br>
-        <button type="submit">
-          Accept
-        </button>
-      </form>
+        <input
+          id="email"
+          type="email"
+          name="email"
+          value={pass_input.email}
+          onChange={event => passengerFormHandlerInput(event, pass_input.idx)}
+        ></input>
     </div>
-  )
-}
+  );
+};
 
-export default PassengerForm
+export default PassengerForm;

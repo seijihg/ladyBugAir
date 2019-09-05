@@ -1,15 +1,21 @@
 import React from 'react'
+import MenuCard from './MenuCard'
+import {connect} from 'react-redux'
 
-const MenuDashboardContainer = ({userInfomation, logoutHandler}) => {
+const MenuDashboardContainer = ({userInfomation, userLoggedIn, logoutHandler}) => {
   return (
     <div>
-      <p>{userInfomation.email}</p>
-      Dashboard
-      <div onClick={logoutHandler}>
-        Sign out
-      </div>
+      {userInfomation ? <p>{userInfomation.email}</p> : <p>blank</p>}
+      <MenuCard logoutHandler={logoutHandler}/>
     </div>
   )
 }
+const mapStateToProps = state => {
+  const { userInfomation, userLoggedIn } = state.authReducer;
+  return {
+    userInfomation,
+    userLoggedIn
+  };
+};
 
-export default MenuDashboardContainer
+export default connect(mapStateToProps) (MenuDashboardContainer)

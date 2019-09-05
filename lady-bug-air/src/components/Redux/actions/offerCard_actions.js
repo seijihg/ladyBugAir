@@ -17,15 +17,14 @@ const addPassengerInputController = (obj) => {
     dispatch({type:"ADD_OBJ_CONTROLLED_INPUT", obj})
   }
 }
-const onChangeTitle = (title) => {
+const onChangeInputFields = (obj) => {
   return dispatch => {
-    dispatch({type:"INPUT_TYPE", title})
+    dispatch({type:"INPUT_FIELDS", obj})
   }
 }
-
   export default {
     saveViewDealToState,
     savePassengersToState,
     addPassengerInputController,
-    onChangeTitle
+    onChangeInputFields
   }
