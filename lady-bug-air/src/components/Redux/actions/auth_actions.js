@@ -1,3 +1,5 @@
+import Api from "../../Api/Api"
+
 const logoutHandler = () => {
   return dispatch => {
     dispatch({type: "REMOVE_USER"})
@@ -23,10 +25,6 @@ const switchLoginSignupForm = () => {
   return dispatch =>{
     dispatch({type: "SWITCH_FORM"})
   }
-}
-
-const signUpUser = userBody => {
-  return dispatch
 }
 
 export default {

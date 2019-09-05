@@ -58,7 +58,16 @@ exports.createUser = (req, res, next) => {
         {expiresIn: '1h'})
         res.status(200).json({
             token: token,
-            message:"User Created"
+            message:"User Created",
+            data: {
+              dob: user.dob,
+              email: user.email,
+              id: user._id.toString(),
+              title: user.title,
+              first_name: user.first_name,
+              last_name: user.last_name,
+              bookings: user.bookings
+            }
         })
     })
     .catch(err => {

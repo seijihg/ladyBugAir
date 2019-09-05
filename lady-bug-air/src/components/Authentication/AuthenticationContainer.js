@@ -95,7 +95,10 @@ const AuthenticationContainer = props => {
         setItemSetAutoLogout(data)
         return data
       })
-      .then(updateUserAuthenticated)
+      .then(data => {
+        console.log(data)
+        updateUserAuthenticated(data)
+      })
       .catch(err => {
         console.log(err);
       });

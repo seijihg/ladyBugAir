@@ -28,7 +28,6 @@ const authReducer = (state = defaultState, action) => {
       }
     case "USER_GET_AUTHENTICATED":
       console.log("USER_GET_AUTHENTICATED")
-      console.log(action.data.data)
       return {
         ...state,
         userLoggedIn: true,
