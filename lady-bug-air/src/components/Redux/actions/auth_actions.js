@@ -1,4 +1,3 @@
-import Api from "../../Api/Api"
 
 const logoutHandler = () => {
   return dispatch => {

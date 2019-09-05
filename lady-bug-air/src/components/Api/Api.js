@@ -1,6 +1,6 @@
 const baseApi = "http://localhost:8080";
 const logInApi = baseApi + "/auth/login";
-const locationsBase = baseApi + "/api_v1/locations";
+const locationsBase = baseApi + "/api_v1/airports?type=large_airport";
 const searchApi = baseApi + "/api_v1/search";
 const offerApi = baseApi + "/api_v1/offer"
 const authenticateApi = baseApi + "/auth/authenticate"

@@ -27,7 +27,6 @@ const locReducer = (state = defaultState, action) => {
           isLoading: false
         };
       }
-
       return {
         ...state,
         suggestions: action.suggestions,

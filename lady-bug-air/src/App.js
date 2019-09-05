@@ -12,7 +12,6 @@ import auth_actions from "./components/Redux/actions/auth_actions";
 import PassengersDetails from "./components/ViewDealBookFolder/PassengersDetails";
 import ConfirmBooking from "./components/ViewDealBookFolder/ConfirmBooking";
 import DashboardCard from "./components/UserDashboard/DashboardCard";
-import MainLoadingPage from "./components/MainLoadingPage";
 
 function App(props) {
   React.useEffect(() => {

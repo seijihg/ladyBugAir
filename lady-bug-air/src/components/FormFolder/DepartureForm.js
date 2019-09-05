@@ -4,10 +4,10 @@ import Autosuggest from "react-autosuggest";
 const DepartureForm = ({ suggestions, preventSubmit, clearSuggestions, updateInputValue, loadSuggestions, value }) => {
   
   const getSuggestionValue = suggestion => {
-    return (`${suggestion.airport_name} ${suggestion.iata.toUpperCase()}`)
+    return (`${suggestion.name} ${suggestion.iata_code.toUpperCase()}`)
   };
   const renderSuggestion = (suggestion) => {
-    return <span>{`${suggestion.airport_name} (${suggestion.iata})`}</span>;
+    return <span>{`${suggestion.name} (${suggestion.iata_code})`}</span>;
   }
   const inputProps = {
     value, // usually comes from the application state
@@ -18,14 +18,15 @@ const DepartureForm = ({ suggestions, preventSubmit, clearSuggestions, updateInp
 
   return (
     <>
-        <Autosuggest 
-          suggestions={suggestions}
-          onSuggestionsFetchRequested={loadSuggestions}
-          onSuggestionsClearRequested={clearSuggestions}
-          onSuggestionSelected={preventSubmit}
-          getSuggestionValue={getSuggestionValue}
-          renderSuggestion={renderSuggestion}
-          inputProps={inputProps} />
+    <Autosuggest 
+      suggestions={suggestions}
+      onSuggestionsFetchRequested={loadSuggestions}
+      onSuggestionsClearRequested={clearSuggestions}
+      onSuggestionSelected={preventSubmit}
+      getSuggestionValue={getSuggestionValue}
+      renderSuggestion={renderSuggestion}
+      inputProps={inputProps} 
+    />
     </>
   );
 };

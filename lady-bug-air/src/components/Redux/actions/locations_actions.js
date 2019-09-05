@@ -13,7 +13,7 @@ function getMatchingLanguages(value, suggestions) {
 
   const regex = new RegExp("^" + escapedValue, "i");
   return suggestions.locations.filter(suggestion =>
-    regex.test(suggestion.airport_name)
+    regex.test(suggestion.name)
   );
 }
 //<-----END

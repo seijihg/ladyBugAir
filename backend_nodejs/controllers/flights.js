@@ -2,12 +2,6 @@ const flightsAPI = require("../api_interface/api_flights");
 const Flight = require("../models/flight");
 const User = require("../models/user");
 
-exports.getAirports = (req, res, next) => {
-  flightsAPI.getAirports().then(airports => {
-    res.status(200).json({ airports: airports.data });
-  });
-};
-
 exports.postFlights = (req, res, next) => {
   const journeys = req.body.journeys;
   const passengers = req.body.passengers;
