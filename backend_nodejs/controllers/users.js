@@ -27,7 +27,6 @@ exports.createUser = (req, res, next) => {
   const title = req.body.title;
   const email = req.body.email;
   const password = req.body.password;
-  const admin = req.body.admin;
   User.findOne({ email: email })
     .then(user => {
       if (user) {
@@ -46,7 +45,8 @@ exports.createUser = (req, res, next) => {
         last_name: last_name,
         password: hashedPass,
         dob: dob,
-        admin: admin
+        admin: false,
+        bookings: []
       });
       return user.save();
     })

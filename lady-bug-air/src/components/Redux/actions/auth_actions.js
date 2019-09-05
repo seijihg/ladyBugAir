@@ -19,10 +19,20 @@ const updateUserAuthenticated = data => {
     dispatch({type: "USER_GET_AUTHENTICATED", data})
   }
 }
+const switchLoginSignupForm = () => {
+  return dispatch =>{
+    dispatch({type: "SWITCH_FORM"})
+  }
+}
+
+const signUpUser = userBody => {
+  return dispatch
+}
 
 export default {
   logoutHandler,
   loginEmailDetail,
   loginPasswordDetail,
-  updateUserAuthenticated
+  updateUserAuthenticated,
+  switchLoginSignupForm
 }

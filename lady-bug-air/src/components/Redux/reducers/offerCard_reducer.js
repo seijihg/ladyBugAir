@@ -25,11 +25,12 @@ const offerCardReducer = (state = defaultState, action) => {
         ...state,
         passengers: [...state.passengers, action.obj]
       }
-    case "INPUT_TYPE":
+    case "INPUT_FIELDS":
+      const value = Object.keys(action.obj)[1]
       return {
         ...state,
         passengers: state.passengers.map((pass, idx) => {
-          if (idx === action.title.idx) {pass.title = action.title.title}
+          if (idx === action.obj.idx) {pass[value] = action.obj[value]}
           return pass
         })
       }

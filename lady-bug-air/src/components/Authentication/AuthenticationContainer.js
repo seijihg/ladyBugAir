@@ -35,7 +35,8 @@ const AuthenticationContainer = props => {
     password,
     updateUserAuthenticated,
     signinForm,
-    userLoggedIn
+    userLoggedIn,
+    switchLoginSignupForm
   } = props;
   const setItemSetAutoLogout = data => {
     localStorage.setItem("token", data.token);
@@ -43,7 +44,6 @@ const AuthenticationContainer = props => {
     const userExpiryDate = expireDate(remainingMilliseconds);
     localStorage.setItem("expiryDate", userExpiryDate);
     setAutoLogout(remainingMilliseconds);
-    updateUserAuthenticated(data)
   };
   const setAutoLogout = milliseconds => {
     setTimeout(() => {
@@ -62,7 +62,11 @@ const AuthenticationContainer = props => {
         }
         return resp.json();
       })
-      .then(setItemSetAutoLogout)
+      .then(data => {
+        setItemSetAutoLogout(data)
+        return data
+      })
+      .then(updateUserAuthenticated)
       .catch(err => {
         console.log(err);
       });
@@ -87,38 +91,48 @@ const AuthenticationContainer = props => {
         }
         return resp.json();
       })
-      .then(setItemSetAutoLogout)
+      .then(data => {
+        setItemSetAutoLogout(data)
+        return data
+      })
+      .then(updateUserAuthenticated)
       .catch(err => {
         console.log(err);
       });
   };
 
+  const loginSignupHandler = event => {
+    event.preventDefault();
+    switchLoginSignupForm()
+  };
+
   const choicedRenderLoginSignupForm = () => {
     return (
       <div>
-        {signinForm ? <LoginCard
-        logInHandler={logInHandler}
-        loginEmailDetail={loginEmailDetail}
-        email={email}
-        loginPasswordDetail={loginPasswordDetail}
-        password={password}
-      /> : 
-      <SignupCard
-        signUpHandler={signUpHandler}
-        loginEmailDetail={loginEmailDetail}
-        email={email}
-        loginPasswordDetail={loginPasswordDetail}
-        password={password}
-      />
-      }
+        {signinForm ? (
+          <LoginCard
+            loginSignupHandler={loginSignupHandler}
+            logInHandler={logInHandler}
+            loginEmailDetail={loginEmailDetail}
+            email={email}
+            loginPasswordDetail={loginPasswordDetail}
+            password={password}
+          />
+        ) : (
+          <SignupCard
+            loginSignupHandler={loginSignupHandler}
+            signUpHandler={signUpHandler}
+            loginEmailDetail={loginEmailDetail}
+            email={email}
+            loginPasswordDetail={loginPasswordDetail}
+            password={password}
+          />
+        )}
       </div>
-    )
-  }
-  return (
-    <>
-      {userLoggedIn ? null : choicedRenderLoginSignupForm()}
-    </>
-  );
+    );
+  };
+
+  return <>{userLoggedIn ? null : choicedRenderLoginSignupForm()}</>;
 };
 
 const mapStateToProps = state => {
@@ -138,7 +152,8 @@ const mapDispatchToProps = dispatch => {
     loginPasswordDetail: password =>
       dispatch(auth_actions.loginPasswordDetail(password)),
     updateUserAuthenticated: data =>
-      dispatch(auth_actions.updateUserAuthenticated(data))
+      dispatch(auth_actions.updateUserAuthenticated(data)),
+    switchLoginSignupForm: () => dispatch(auth_actions.switchLoginSignupForm())
   };
 };
 

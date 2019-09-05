@@ -20,7 +20,7 @@ class NavBar extends React.Component {
             </li>
             {userLoggedIn ? (
               <li>
-                  <MenuDashboardContainer userInfomation={userInfomation} logoutHandler={logoutHandler}/>
+                  <MenuDashboardContainer logoutHandler={logoutHandler}/>
               </li>
             ) : (
               <li>Sign in</li>

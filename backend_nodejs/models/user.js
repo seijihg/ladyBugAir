@@ -29,14 +29,14 @@ const userSchema = new Schema({
     admin: {
         type: Boolean
     },
-    bookings: {
+    bookings: [{
         type: Schema.Types.ObjectId,
-        ref: 'Flight'
-    },
-    articles: {
+        ref: "Flight"
+    }],
+    articles: [{
         type: Schema.Types.ObjectId,
         ref: 'Article'
-    }
+    }]
 }, {timestamps: true})
 
 module.exports = mongoose.model("User", userSchema)

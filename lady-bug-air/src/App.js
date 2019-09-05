@@ -1,6 +1,6 @@
 import React from "react";
 import "./css/App.css";
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import BodyContainer from "./components/Containers/BodyContainer";
@@ -11,6 +11,8 @@ import { connect } from "react-redux";
 import auth_actions from "./components/Redux/actions/auth_actions";
 import PassengersDetails from "./components/ViewDealBookFolder/PassengersDetails";
 import ConfirmBooking from "./components/ViewDealBookFolder/ConfirmBooking";
+import DashboardCard from "./components/UserDashboard/DashboardCard";
+import MainLoadingPage from "./components/MainLoadingPage";
 
 function App(props) {
   React.useEffect(() => {
@@ -23,6 +25,23 @@ function App(props) {
   const navBarLogoutHandler = event => {
     event.preventDefault()
     props.logoutHandler()
+  }
+  const profilePageRouteDirectDependsOnAuth = () => {
+    if (props.userLoggedIn === true) {
+      return (
+        <>
+        <Route
+        path="/profile/"
+        render={() => <Redirect to="/profile/dashboard" />}
+        />
+        <Route
+        exact
+        path="/profile/dashboard"
+        render={props => <DashboardCard {...props} />}
+      />  
+        </>
+      )
+    }
   }
   return (
     <div>
@@ -52,6 +71,7 @@ function App(props) {
         path="/search_results/view_deal/confirm_booking"
         render={props => <ConfirmBooking {...props} />}
       />
+      {profilePageRouteDirectDependsOnAuth()}
       <Footer />
     </div>
   );
