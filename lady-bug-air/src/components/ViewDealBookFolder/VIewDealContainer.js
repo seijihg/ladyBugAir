@@ -1,16 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
-import SegmentCard from "../SearchResultsFolder/SegmentCard";
 import BagDetails from "./BagDetails";
-import AuthenticationContainer from "../Authentication/AuthenticationContainer";
 import { NavLink } from 'react-router-dom'
+import SegmentCardBook from "./SegmetCardBook";
 
 const ViewDealContainer = ({ isLoading, details, userLoggedIn }) => {
   const status = isLoading ? "Loading..." : "View Deal";
 
   const getJourneys = () => {
     return details.journeys.map(journey =>
-      journey.flightSegments.map(seg => <SegmentCard key={seg.id} {...seg} />)
+      journey.flightSegments.map(seg => <SegmentCardBook key={seg.id} {...seg} />)
     );
   };
   const bagDisclosures = () => {
@@ -24,22 +23,30 @@ const ViewDealContainer = ({ isLoading, details, userLoggedIn }) => {
     }
     return (
       <>
+        <div>
+          <h1>Your Selected Flight.</h1>
+        </div>
         <div>{getJourneys()}</div>
-        <div>{bagDisclosures()}</div>
         <div>
           Total: {details.totalPrice.amount} / {details.totalPrice.currencyCode}
         </div>
         {userLoggedIn ? (
-          <NavLink exact to="/search_results/view_deal/passengers">
-            Passengers
+          <NavLink exact to="/search_results/view_deal/passengers" activeClassName="deal_continue"> 
+            Continue
           </NavLink>
         ) : (
-          <AuthenticationContainer />
+          <div className="please_sign">
+            <h2>Please sign in or register to continue.</h2>
+          </div>
         )}
       </>
     );
   };
-  return <div>{renderAfterStatusConfirmed()}</div>;
+  return (
+    <div className="viewDeal_container">
+      {renderAfterStatusConfirmed()}
+    </div>
+  )
 };
 
 const mapStateToProps = state => {

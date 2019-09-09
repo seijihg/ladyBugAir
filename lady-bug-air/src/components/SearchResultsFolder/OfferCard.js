@@ -35,11 +35,14 @@ const OfferCard = ({ offer, flights, destinations, saveViewDealToState, history 
     history.push("/search_results/view_deal")
   }
   return (
-    <div>
-      {findJourney()}
-      Price: {totalPrice.amount}
-      <ViewDealButton viewDealHandler={viewDealHandler}/>
-      <p>----</p>
+    <div className="offerCard_container">
+      <div>
+        {findJourney()}
+      </div>
+      <div className="price">
+        <h2>£{totalPrice.amount}</h2>
+        <ViewDealButton viewDealHandler={viewDealHandler}/>
+      </div>
     </div>
   );
 };

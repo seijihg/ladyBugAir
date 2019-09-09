@@ -7,7 +7,7 @@ const DepartureForm = ({ suggestions, preventSubmit, clearSuggestions, updateInp
     return (`${suggestion.name} ${suggestion.iata_code.toUpperCase()}`)
   };
   const renderSuggestion = (suggestion) => {
-    return <span>{`${suggestion.name} (${suggestion.iata_code})`}</span>;
+    return <span><i class="fas fa-plane"></i>{`${suggestion.name} (${suggestion.iata_code})`}</span>;
   }
   const inputProps = {
     value, // usually comes from the application state
@@ -17,7 +17,7 @@ const DepartureForm = ({ suggestions, preventSubmit, clearSuggestions, updateInp
   };
 
   return (
-    <>
+    <div className="autosuggest_depature">
     <Autosuggest 
       suggestions={suggestions}
       onSuggestionsFetchRequested={loadSuggestions}
@@ -27,7 +27,7 @@ const DepartureForm = ({ suggestions, preventSubmit, clearSuggestions, updateInp
       renderSuggestion={renderSuggestion}
       inputProps={inputProps} 
     />
-    </>
+    </div>
   );
 };
 export default DepartureForm;

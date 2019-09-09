@@ -117,47 +117,53 @@ class FormContainer extends React.Component {
     const status = isLoading ? "Loading..." : "Type to load suggestions";
 
     return (
-      <div>
+      <div className="form_container">
         <form onSubmit={this.submitSearchHandler}>
-          <h1>Search Flights and Book!</h1>
-          <h2>Status: {status}</h2>
-          <SingleReturnSelect
-            singleReturnState={this.onChangeSingleReturnHandler}
-            notsingle={notsingle}
-          />
-          <PeopleCount
-            addAdultHandler={this.addAdultHandler}
-            removeAdultHandler={this.removeAdultHandler}
-            count={people}
-          />
-          <FlightClass
-            classType={classType}
-            flightClassHandler={this.flightClassHandler}
-          />
-          <DepartureForm
-            loadSuggestions={loadSuggestions}
-            clearSuggestions={clearSuggestions}
-            updateInputValue={updateInputValue}
-            suggestions={suggestions}
-            preventSubmit={this.preventSubmit}
-            value={value}
-          />
-          <ArrivalForm
-            loadSuggestions={loadSuggestionsArrival}
-            clearSuggestions={clearSuggestions}
-            updateInputValue={updateInputValueArrival}
-            suggestions={suggestions}
-            preventSubmit={this.preventSubmit}
-            value={arrival_value}
-          />
-          <FlightDates
-            dateFromHandler={this.dateFromHandler}
-            dateFrom={dateFrom}
-            dateToHandler={this.dateToHandler}
-            dateTo={dateTo}
-          />
-          <br></br>
-          <button type="submit">Search</button>
+          <div className="h1_for">
+            <h1>Search Flights and Book!</h1>
+          </div>
+          
+          <div className="search_options">
+            <SingleReturnSelect
+              singleReturnState={this.onChangeSingleReturnHandler}
+              notsingle={notsingle}
+            />
+            <FlightClass
+              classType={classType}
+              flightClassHandler={this.flightClassHandler}
+            />
+            <PeopleCount
+              addAdultHandler={this.addAdultHandler}
+              removeAdultHandler={this.removeAdultHandler}
+              count={people}
+            />
+          </div>
+          <div className="depature_container">
+            <DepartureForm
+              loadSuggestions={loadSuggestions}
+              clearSuggestions={clearSuggestions}
+              updateInputValue={updateInputValue}
+              suggestions={suggestions}
+              preventSubmit={this.preventSubmit}
+              value={value}
+            />
+            <ArrivalForm
+              loadSuggestions={loadSuggestionsArrival}
+              clearSuggestions={clearSuggestions}
+              updateInputValue={updateInputValueArrival}
+              suggestions={suggestions}
+              preventSubmit={this.preventSubmit}
+              value={arrival_value}
+            />
+            <FlightDates
+              dateFromHandler={this.dateFromHandler}
+              dateFrom={dateFrom}
+              dateToHandler={this.dateToHandler}
+              dateTo={dateTo}
+            />
+            <br></br>
+            <button type="submit" className="btn btn-search"><i class="fas fa-search fa-2x"></i></button>
+          </div>
         </form>
       </div>
     );

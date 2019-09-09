@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require("express")
 const app = express()
+const path = require('path')
 
 const bodyParser = require('body-parser')
 app.use(bodyParser.json())
@@ -37,7 +38,8 @@ app.use(apiv1, flightsRoutes)
 const locationRoutes = require('./routes/location_routes')
 app.use(apiv1, locationRoutes)
 
-
+const logoRoutes = require('./routes/logos_routes')
+app.use(apiv1, logoRoutes)
 //--
 
 const authRoutes = require('./routes/auth_routes')

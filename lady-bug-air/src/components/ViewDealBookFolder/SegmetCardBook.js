@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SegmentCard = ({arrival, departure, operatingCarrier, flightDuration, stops}) => {
+const SegmentCardBook = ({arrival, departure, operatingCarrier, flightDuration}) => {
   const RoundNumber = number => {
     return Number((number).toFixed(1))
   }
@@ -11,14 +11,13 @@ const SegmentCard = ({arrival, departure, operatingCarrier, flightDuration, stop
         <p>{operatingCarrier.name}</p>
       </div>
       <div>
-        <h2>{stops === 1 ? <p>direct</p> : <p>{stops - 1} stop</p>}</h2>
+        <h2>{RoundNumber(flightDuration/60)}h</h2>
       </div>
       <div>
-      <h2>{RoundNumber(flightDuration/60)}h</h2>
         <p>{departure.airportCode} - {arrival.airportCode}</p>
       </div>
     </div>
   )
 }
 
-export default SegmentCard
+export default SegmentCardBook
