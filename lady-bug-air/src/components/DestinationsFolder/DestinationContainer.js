@@ -8,7 +8,7 @@ const thumb_hk = "https://res.cloudinary.com/seijihg/image/upload/v1567972390/la
 class DestinationContainer extends React.Component {
   render() {
     return (
-      <div>
+      <div className="destination_container_top">
         <h3>Recommended Articles</h3>
         <div className="destination_container">
           <DestinationCard thumb={thumb_beijing} />

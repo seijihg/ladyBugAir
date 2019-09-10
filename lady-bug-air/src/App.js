@@ -54,26 +54,31 @@ function App(props) {
       </div>
       <div class="container">
         <Route exact path="/" render={props => <BodyContainer {...props} />} />
-        <Route
-          exact
-          path="/search_results"
-          render={props => <SearchResultsContainer {...props} />}
-        />
-        <Route
-          exact
-          path="/search_results/view_deal"
-          render={props => <ViewDealContainer {...props} />}
-        />
-        <Route
-          exact
-          path="/search_results/view_deal/passengers"
-          render={props => <PassengersDetails {...props} />}
-        />
-        <Route
-          exact
-          path="/search_results/view_deal/confirm_booking"
-          render={props => <ConfirmBooking {...props} />}
-        />
+        <div className="search_book_main_container_top">
+        <div className="search_book_main_container">
+          <Route
+            exact
+            path="/search_results"
+            render={props => <SearchResultsContainer {...props} />}
+          />
+          <Route
+            exact
+            path="/search_results/view_deal"
+            render={props => <ViewDealContainer {...props} />}
+          />
+          <Route
+            exact
+            path="/search_results/view_deal/passengers"
+            render={props => <PassengersDetails {...props} />}
+          />
+          <Route
+            exact
+            path="/search_results/view_deal/confirm_booking"
+            render={props => <ConfirmBooking {...props} />}
+          />
+          
+        </div>
+        </div>
         {profilePageRouteDirectDependsOnAuth()}
       </div>
     </div>

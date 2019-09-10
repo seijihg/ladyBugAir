@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import offerCard_actions from "../Redux/actions/offerCard_actions";
 import PassengerForm from "./PassengerForm";
-import { NavLink } from 'react-router-dom'
 
 const PassengersDetails = props => {
   const {
@@ -38,18 +37,29 @@ const PassengersDetails = props => {
     if (details === null) {
       return <p>Session expired</p>;
     }
+  const submitHandler = (event) => {
+    event.preventDefault()
+    props.history.push("/search_results/view_deal/confirm_booking")
+  }
     return (
-      <div>
-        {passengers.map(pass_input => (
-          <PassengerForm
-            key={pass_input.idx}
-            pass_input={pass_input}
-            passengerFormHandlerInput={passengerFormHandlerInput}
-          />
-        ))}
-        <NavLink exact to="/search_results/view_deal/confirm_booking">
-          Continue
-        </NavLink>
+      <div className="passengerTop_container">
+        <form onSubmit={submitHandler}>
+          <div className="add_passengers_details">
+            <h1><i class="fas fa-user-astronaut"></i> Add Passenger Details</h1>
+          </div>
+          <div>
+            {passengers.map(pass_input => (
+              <PassengerForm
+                key={pass_input.idx}
+                pass_input={pass_input}
+                passengerFormHandlerInput={passengerFormHandlerInput}
+              />
+            ))}
+          </div>
+          <button type="submit" className="btn btn-navlink_confirmBooking" >
+            Continue
+          </button>
+        </form>
       </div>
     )
   };

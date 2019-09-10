@@ -1,18 +1,15 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import BookingCard from './BookingCard'
 
 const DashboardCard = ({userInfomation}) => {
   const fullName = (data) => {
-    console.log(data)
     return `${data.first_name} ${data.last_name}`
   }
   const getBookingOut = () => {
-    return userInfomation.bookings.map(booking => {
+    return userInfomation.bookings.map((booking, idx) => {
       return (
-        <div>
-          <p>{booking.id}</p>
-          {booking.passengers.map(pass => <p>{fullName(pass)}</p>)}
-        </div>
+        <BookingCard key={idx} {...booking} fullName={fullName}/>
       )
     })
   }
@@ -25,9 +22,13 @@ const DashboardCard = ({userInfomation}) => {
     )
   }
   return (
-    <div>
-      {renderCard()}
-      {getBookingOut()}
+    <div className="main_dashboard_container">
+      <div className="dashboard_container">
+        {renderCard()}
+        <h2>Your booked flights</h2>
+        {getBookingOut()}
+      </div>
+      
     </div>
   )
 }

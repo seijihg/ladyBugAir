@@ -6,10 +6,10 @@ import SearchResults from './SearchResults';
 const SearchResultsContainer = (props) => {
   const {searchResults} = props
   return (
-    <>
+    <div>
       <FormContainer />
       <SearchResults searchResults={searchResults}/>
-    </>
+    </div>
   )
 }
 const mapStateToProps = state => {

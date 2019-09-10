@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import AuthenticationContainer from "./Authentication/AuthenticationContainer";
-import MenuDashboardContainer from "./UserDashboard/MenuDashboardContainer";
+import MenuCard from "./UserDashboard/MenuCard";
 
 class NavBar extends React.Component {
   state = {
@@ -33,12 +33,7 @@ class NavBar extends React.Component {
           </div>
           <ul>
             {userLoggedIn ? (
-              <li>
-                <MenuDashboardContainer
-                  logoutHandler={logoutHandler}
-                  userInfomation={userInfomation}
-                />
-              </li>
+                <MenuCard userInfomation={userInfomation} logoutHandler={logoutHandler}/>
               ) : (
               <li className="signin" onClick={this.signFormHandler}>Sign in</li>
             )}
