@@ -1,11 +1,12 @@
 const baseApi = "http://localhost:8080";
 const logInApi = baseApi + "/auth/login";
-const locationsBase = baseApi + "/api_v1/locations";
+const locationsBase = baseApi + "/api_v1/airports?type=large_airport";
 const searchApi = baseApi + "/api_v1/search";
 const offerApi = baseApi + "/api_v1/offer"
 const authenticateApi = baseApi + "/auth/authenticate"
 const createUserApi = baseApi + "/api_v1/users"
 const bookFlightApi = baseApi + "/api_v1/book"
+const logoApi = baseApi + `/api_v1/logos?iata=`
 
 //--> Locations
 const allLocations = () => {
@@ -63,6 +64,10 @@ const bookFlight = (bookFlightBody, token) => {
   })
 }
 
+const getLogo = iata => {
+  return fetch(logoApi + iata)
+  .then(resp => resp.json())
+}
 
 export default {
   logInApi,
@@ -71,5 +76,6 @@ export default {
   makeOfferFlight,
   authenticateUser,
   createUser,
-  bookFlight
+  bookFlight,
+  getLogo
 };

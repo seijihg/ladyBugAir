@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const locationSchema = new Schema (
+const airportSchema = new Schema (
   {
     city_name: {
       type: String,
@@ -21,4 +21,4 @@ const locationSchema = new Schema (
   }, {timestamps: true}
 )
 
-module.exports = mongoose.model('Location', locationSchema)
+module.exports = mongoose.model('Airport', airportSchema)

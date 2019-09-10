@@ -111,7 +111,7 @@ const AuthenticationContainer = props => {
 
   const choicedRenderLoginSignupForm = () => {
     return (
-      <div>
+      <div className="form_authentication">
         {signinForm ? (
           <LoginCard
             loginSignupHandler={loginSignupHandler}

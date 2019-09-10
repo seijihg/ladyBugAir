@@ -5,8 +5,19 @@ import InputPassword from "./InputPassword";
 const LoginCard = ({logInHandler, loginEmailDetail, email, loginPasswordDetail, password, loginSignupHandler}) => {
   return (
     <div>
-    <h1>Good to see you again</h1>
-    <p>Sign in for member-only deals and access to your trip details.</p>
+      <div className="top-header">
+        <div>
+          <img 
+            className="auth_logo"
+            src="https://res.cloudinary.com/seijihg/image/upload/v1567870289/lady_bug_air/bear_orange_m7uvzb.png"
+            alt="small_bc_logo"
+          ></img>
+        </div>
+        <div>
+          <b>Good to see you again</b>
+          <p>Sign in for member-only deals and access to your trip details.</p>
+        </div>
+      </div>
     <form onSubmit={logInHandler}>
       <InputEmail 
         loginEmailDetail={loginEmailDetail}
@@ -17,15 +28,10 @@ const LoginCard = ({logInHandler, loginEmailDetail, email, loginPasswordDetail, 
         password={password}
       />
       <div>
-        <input type="checkbox" id="scales" name="scales" defaultChecked/>
-        <label for="scales">Remember me</label>
-      </div>
-      <div>
-        <input type="submit" value="Login!" />
+        <input type="submit" value="Login!" className="btn btn-auth"/>
       </div>
     </form>
-    <p>Don't have an account?</p>
-    <button onClick={loginSignupHandler}>Register</button>
+    <p>Don't have an account? <span className="sign_log" onClick={loginSignupHandler}> Register</span></p>
     </div>
   )
 }

@@ -2,7 +2,6 @@ import React from "react";
 import "./css/App.css";
 import { Route, Redirect } from "react-router-dom";
 import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
 import BodyContainer from "./components/Containers/BodyContainer";
 import SearchResultsContainer from "./components/SearchResultsFolder/SearchResultsContainer";
 import ViewDealContainer from "./components/ViewDealBookFolder/ViewDealContainer";
@@ -12,7 +11,7 @@ import auth_actions from "./components/Redux/actions/auth_actions";
 import PassengersDetails from "./components/ViewDealBookFolder/PassengersDetails";
 import ConfirmBooking from "./components/ViewDealBookFolder/ConfirmBooking";
 import DashboardCard from "./components/UserDashboard/DashboardCard";
-import MainLoadingPage from "./components/MainLoadingPage";
+import FooterContainer from "./components/FooterFolder/FooterContainer";
 
 function App(props) {
   React.useEffect(() => {
@@ -23,57 +22,70 @@ function App(props) {
     }
   }, []);
   const navBarLogoutHandler = event => {
-    event.preventDefault()
-    props.logoutHandler()
-  }
+    event.preventDefault();
+    props.logoutHandler();
+  };
   const profilePageRouteDirectDependsOnAuth = () => {
     if (props.userLoggedIn === true) {
       return (
         <>
-        <Route
-        path="/profile/"
-        render={() => <Redirect to="/profile/dashboard" />}
-        />
-        <Route
-        exact
-        path="/profile/dashboard"
-        render={props => <DashboardCard {...props} />}
-      />  
+          <Route
+            path="/profile/"
+            render={() => <Redirect to="/profile/dashboard" />}
+          />
+          <Route
+            exact
+            path="/profile/dashboard"
+            render={props => <DashboardCard {...props} />}
+          />
         </>
-      )
+      );
     }
-  }
+  };
   return (
-    <div>
-      <NavBar
-        userLoggedIn={props.userLoggedIn}
-        userInfomation={props.userInfomation}
-        logoutHandler={navBarLogoutHandler}
-      />
-      <Route exact path="/" render={props => <BodyContainer {...props} />} />
-      <Route
-        exact
-        path="/search_results"
-        render={props => <SearchResultsContainer {...props} />}
-      />
-      <Route
-        exact
-        path="/search_results/view_deal"
-        render={props => <ViewDealContainer {...props} />}
-      />
-      <Route
-        exact
-        path="/search_results/view_deal/passengers"
-        render={props => <PassengersDetails {...props} />}
-      />
-      <Route
-        exact
-        path="/search_results/view_deal/confirm_booking"
-        render={props => <ConfirmBooking {...props} />}
-      />
-      {profilePageRouteDirectDependsOnAuth()}
-      <Footer />
+    <>
+    <div className="main_container_up">
+      <div className="navbar_container">
+        <NavBar
+          userLoggedIn={props.userLoggedIn}
+          userInfomation={props.userInfomation}
+          logoutHandler={navBarLogoutHandler}
+        />
+      </div>
+      <div class="container">
+        <Route exact path="/" render={props => <BodyContainer {...props} />} />
+        <div className="search_book_main_container_top">
+        <div className="search_book_main_container">
+          <Route
+            exact
+            path="/search_results"
+            render={props => <SearchResultsContainer {...props} />}
+          />
+          <Route
+            exact
+            path="/search_results/view_deal"
+            render={props => <ViewDealContainer {...props} />}
+          />
+          <Route
+            exact
+            path="/search_results/view_deal/passengers"
+            render={props => <PassengersDetails {...props} />}
+          />
+          <Route
+            exact
+            path="/search_results/view_deal/confirm_booking"
+            render={props => <ConfirmBooking {...props} />}
+          />
+          
+        </div>
+        </div>
+        {profilePageRouteDirectDependsOnAuth()}
+      </div>
     </div>
+    <div className="footer_container">
+      <FooterContainer />
+    </div>
+    </>
   );
 }
 

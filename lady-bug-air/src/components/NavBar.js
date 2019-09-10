@@ -1,35 +1,48 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import AuthenticationContainer from "./Authentication/AuthenticationContainer";
-import MenuDashboardContainer from "./UserDashboard/MenuDashboardContainer";
+import MenuCard from "./UserDashboard/MenuCard";
 
 class NavBar extends React.Component {
+  state = {
+    signForm: false
+  }
+  signFormHandler = () => {
+    this.setState({
+      signForm: !this.state.signForm
+    })
+  }
   render() {
     const { userLoggedIn, userInfomation, logoutHandler } = this.props;
     return (
       <>
         <nav id="navbar">
-          <h1 className="logo">
-            <i class="fas fa-bug"> | Lady Bug Air</i>
-          </h1>
-          <ul>
-            <li>
-              <NavLink exact to="/">
-                Flights
-              </NavLink>
-            </li>
-            {userLoggedIn ? (
+          <div className="div_logo">
+            <img 
+              className="logo"
+              src="https://res.cloudinary.com/seijihg/image/upload/v1567870289/lady_bug_air/skysearch_orange_eehygy.png"
+              alt="Bear Bug sky search logo"
+            ></img>
+            <ul>
               <li>
-                  <MenuDashboardContainer logoutHandler={logoutHandler}/>
+                <NavLink exact to="/">
+                  Flights
+                </NavLink>
               </li>
-            ) : (
-              <li>Sign in</li>
+            </ul>
+          </div>
+          <ul>
+            {userLoggedIn ? (
+                <MenuCard userInfomation={userInfomation} logoutHandler={logoutHandler}/>
+              ) : (
+              <li className="signin" onClick={this.signFormHandler}>Sign in</li>
             )}
           </ul>
         </nav>
-        <div className="login_form">
+        {this.state.signForm ? 
+        <div className="form_authentication_container">
           <AuthenticationContainer />
-        </div>
+        </div> : null}
       </>
     );
   }
