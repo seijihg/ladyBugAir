@@ -1,20 +1,586 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap');
+:root {
+  --primary-colour: #6C648C;
+  --secondary-colour: #F26363;
+  --accent-light:#D9857E;
+  --accent-dark:#A686A1;
+  --dark-colour: #081526;
+  --offwhite-colour: #fafafa;
+  --max-width: 1100px;
+}
+@font-face {
+  font-family: HelveticaNeue;
+  src: url(https://res.cloudinary.com/seijihg/raw/upload/v1567937360/lady_bug_air/fonts/helveticaneue/HelveticaNeueMed_grmzjq.ttf);
+  
+}
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 body {
-  font-family: 'Source Code Pro', monospace;
+  height: 100%;
+  font-family: 'Work Sans', sans-serif;
+  background: var(--offwhite-colour);
+  font-size: 16px;
+  line-height: 1.5;
 }
 a {
-  text-decoration: underline;
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+}
+h2, h3, h4, h5, h6 {
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  line-height: 1.3;
+}
+h4 {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  font-weight: 600
+}
+img {
+  width: 100%;
+}
+input:focus {
+  outline: none;
+}
+.main_loading {
+  position: fixed;
+  z-index: 999;
+  height: 150px;
+  width: 150px;
+  overflow: visible;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.main_loading:before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.3);
+}
+.main_container_up {
+  min-height: calc(100vh - 320px);
+}
+.container {
+  margin: auto;
+}
+.navbar_container {
+  margin: auto;
+  background: var(--primary-colour);
 }
 #navbar {
+  max-width: var(--max-width);
+  margin: auto;
   display: flex;
-  position: sticky;
-  top: 0;
-  background: rgb(215, 215, 215);
   color: whitesmoke;
   justify-content: space-between;
+  padding: 0rem 2rem;
+}
+#navbar .div_logo {
+  display: flex;
+  margin: 0.2rem;
+}
+#navbar .logo {
+  width: 180px;
+  padding: 0.75rem;
+}
+#navbar ul {
+  display: flex;
+  align-items: center;
+}
+#navbar ul li a {
+  color:#ffffff;
+  padding: 0.75rem;
+  margin: 0 0.25rem;
+}
+
+#navbar ul li a:hover {
+  text-decoration: underline;
+}
+.signin {
+  cursor: pointer;
+}
+.menuCard {
+  display: flex;
+  flex-direction: row-reverse;
+  text-align: center;
+}
+/* Main Page Container */
+.index_container {
+  width: var(--max-width);
+  margin: auto;
+  padding: 0 2rem;
+  padding-bottom: 2rem;
+}
+.search_book_main_container_top {
+  border-top: 1px solid var(--secondary-colour);
+  margin-top: 2rem;
+  padding-bottom: 2rem;
+  background: rgb(255, 245, 253);
+}
+.search_book_main_container {
+  width: var(--max-width);
+  margin: auto;
+  padding: 0 2rem;
+}
+/* Search Form */
+.form_container {
+  padding: 2rem 0;
+  
+}
+.form_container .search_options {
+  display: flex;
+  margin-bottom: 0.75rem;
+}
+.form_container .passengers_number {
+  display: flex
+}
+.form_container .passengers_number .m_p_icons {
+  padding: 0 1rem;
+  cursor: pointer;
+  color: var(--secondary-colour);
+}
+.form_container select {
+  border: none;
+  font-size: 1rem;
+  display: block;
+  margin-bottom: 0.75rem;
+  margin-right: 2rem;
+  width: 150px;
+}
+
+.form_container .h1_for {
+  font-size: 1.3rem;
+  margin-bottom: 1.75rem;
+}
+
+.form_container .depature_container {
+  display: flex;
+  justify-content: space-between;
+}
+.form_container input {
+  z-index: 1;
+  border: none;
+  background: rgb(255, 228, 226);
+  font-size: 0.9rem;
+}
+
+.form_container input[type="date"] {
+  flex: 1;
+  margin: 0 0.1rem;
+  padding: 0 1rem;
+}
+.btn-search {
+  width: 50px;
+  background: var(--secondary-colour);
+  margin: 0 0.1rem;
+  cursor: pointer;
+}
+.fa-search {
+  color: white;
+}
+.fa-plane {
+  margin: 0 1rem;
+}
+.react-autosuggest__container {
+  z-index: 1;
+  margin: 0 0.1rem;
+}
+.react-autosuggest__input {
+  border: none;
+  padding: 1rem 1rem;
+  width: 300px;
+}
+.react-autosuggest__suggestions-container {
+  position: absolute;
+  z-index: 1;
+  background: var(--offwhite-colour);
+  font-weight: bold;
+  box-shadow: 3px 3px 5px 2px rgb(235, 235, 235);
+  margin: 0.2rem 0;
+}
+.react-autosuggest__suggestion{
+  padding: 1rem;
+  
+}
+.react-autosuggest__suggestion--highlighted {
+  background: var(--accent-light);
+  cursor: pointer;
+}
+/* Authentication Form */
+.form_authentication_container {
+  max-width: var(--max-width);
+  display: flex;
+  flex-direction: row-reverse;
+  margin:auto;
+  padding: 0rem 4rem;
+}
+.form_authentication {
+  width: 500px;
+  padding: 2rem 1rem;
+  margin: 0.2rem 2rem;
+  position: absolute;
+  background: var(--offwhite-colour);
+  z-index: 2;
+  box-shadow: 3px 3px 5px 2px rgb(235, 235, 235);
+}
+.form_authentication input[type="email"], input[type="password"] {
+  width: 100%;
+  padding: .75rem;
+  margin-bottom: .75rem;
+}
+
+.btn {
+  border: none;
+  display: inline-block;
+}
+.btn:hover {
+  opacity: 0.9;
+}
+.btn-auth {
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: var(--offwhite-colour);
+  background: var(--primary-colour);
+  padding: 1rem 1rem;
+  margin-bottom: 0.75rem
+}
+.form_authentication .sign_log {
+  color: var(--secondary-colour);
+  cursor: pointer;
+}
+.form_authentication .top-header {
+  display: flex;
+  margin-bottom: 0.75rem;
+}
+.form_authentication .auth_logo {
+  width: 40px;
+  padding: 0.25rem;
+  margin: 0 0.35rem;
+}
+.form_authentication .signup-term {
+  font-size: 0.75rem;
+  color: gray;
+}
+/* Footer */
+
+.footer_container {
+  background: var(--dark-colour);
+  color: var(--offwhite-colour);
+  width: 100%;
+}
+.footer_container img {
+  width: 150px;
+  margin-bottom: 0.75rem;
+}
+.footer_container .footer_container_inside {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1.5rem;
+  width: var(--max-width);
+  margin: auto;
+  padding: 2rem;
+}
+.footer_container .footer_container_inside .logoCard {
+  font-size: 0.80rem;
+  padding-right: 2rem;
+}
+.footer_container .footer_container_inside > *:last-child {
+  grid-column: 1 / span 4;
+  text-align: center;
+  margin-top: 4rem;
+}
+.footerCards {
+  font-family: HelveticaNeue, Arial, sans-serif;
+  font-size: 0.80rem;
+  line-height: 1.5rem;
+}
+/* Destinations */
+.destination_container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2rem;
+}
+.destination_container_top h3 {
+  margin-bottom: 1rem;
+}
+.destination_container button {
+  background: var(--secondary-colour);
+  display: block;
+  width: 150px;
+  height: 30px;
+  border-radius: 4px;
+  text-align: center;
+  color: var(--offwhite-colour);
+  cursor: pointer;
+}
+.destination_container button:focus {
+  outline: none;
+}
+.destination_container img {
+  height: 184px;
+}
+.destination_container .destination_card {
+  border: 1px solid rgb(248, 234, 233);
+}
+.destination_container .destination_card .destination_content {
+  padding: 1.5rem;
+}
+.destination_container .destination_card .destination_content p {
+  margin-bottom: 2rem;
+}
+
+/* Offer Card */
+.offerCard_container {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  grid-gap: 1rem;
+  background: var(--offwhite-colour);
+  box-shadow: 3px 3px 5px 2px rgb(235, 235, 235);
+  margin-bottom: 1.25rem;
+  padding: 1rem;
+}
+.offerCard_container h2 {
+  font-weight: 600;
+  font-size: 1.3rem
+}
+.offerCard_container .price {
+  border-left: 1px solid var(--accent-dark);
+  padding-top: 1rem;
+  padding-left: 1rem;
+}
+.offerCard_container .btn-view-deal {
+  background: var(--secondary-colour);
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 1rem;
+  padding: 0.75rem;
+  border-radius: 3px;
+  color: var(--offwhite-colour);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+.segmentCard {
+  display: flex;
+  justify-content: space-between;
+}
+
+.segmentCard .time p {
+  width: 200px;
+  color: gray;
+}
+/* View Deal */
+
+.viewDeal_container {
+  margin-top: 2rem;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: 2fr 1fr;
+  font-size: 0.7rem;
+}
+
+.summarize_container h1 {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 3px 3px 0 0;
+  background: var(--accent-dark);
+  padding: .5rem;
+  color: var(--offwhite-colour);
+}
+.summarize_container h2 {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.summarize_container .segmentCardBook {
+  display: grid;
+  grid-gap: .7rem;
+  grid-template-columns: 0.7fr 2fr 1fr 2fr;
+  background: var(--offwhite-colour);
+  padding: 2rem 0.7rem;
+}
+.summarize_container .total_duration {
+  display: block;
+  background: var(--accent-dark);
+  color: var(--offwhite-colour);
+  padding: .7rem 1.5rem;
+}
+.viewDeal_container .deal_continue {
+  display: block;
+  background: var(--secondary-colour);
+  text-align: center;
+  margin-top: 2rem;
+  padding: 1rem;
+  cursor: pointer;
+  color: var(--offwhite-colour);
+}
+.trip_container_top {
+  margin-right: 2rem;
+}
+.trip_container {
+  background: var(--offwhite-colour);
+}
+.trip_container h1 {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 3px 3px 0 0;
+  background: var(--accent-dark);
+  padding: .5rem;
+  color: var(--offwhite-colour);
+}
+.trip_container .passengers_container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: .5rem;
+}
+.trip_container .total_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: var(--offwhite-colour);
+  background: var(--dark-colour);
+  padding: .6rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+.trip_container p {
+  font-size: 1rem;
+}
+/* Add Passengers Form */
+.passengerTop_container {
+  margin-top: 2rem;
+  background: rgb(255, 228, 226);
+  padding: 1rem;
+}
+.passengerForm_container {
+  display: grid;
+  grid-template-columns: .3fr 1fr 1fr 1fr 1fr;
+  grid-gap: .2rem;
+}
+.passengerForm_container input {
+  padding: 0.2rem;
+  width: 100%;
+}
+.passengerTop_container .btn-navlink_confirmBooking {
+  background: var(--secondary-colour);
+  text-align: center;
+  margin-top: 2rem;
+  padding: .5rem 1rem;
+  cursor: pointer;
+  color: var(--offwhite-colour);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.passengerTop_container .add_passengers_details {
+  display: block;
+  font-size: 0.5rem;
+  font-weight: 600;
+  border-radius: 3px 3px 0 0;
+  background: var(--accent-dark);
+  padding: .5rem;
+  color: var(--offwhite-colour);
+  margin-bottom: 1rem;
+}
+.passengerTop_container label {
+  font-size: .8rem;
+}
+/* Confirm Booking */
+.confirmBooking_container {
+  margin-top: 2rem;
+}
+
+.confirmBooking_container .btn-confirm {
+  background: var(--secondary-colour);
+  text-align: center;
+  margin-top: 2rem;
+  padding: .5rem 1rem;
+  cursor: pointer;
+  color: var(--offwhite-colour);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.confirmBooking_container .passenger_listout {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.confirmBooking_container .passenger_container {
+  margin-top: 1rem;
+}
+.confirmBooking_container .passenger_listout p {
+  background: var(--offwhite-colour);
+  padding: 1rem;
+  width: 100%;
+}
+
+.confirmBooking_container .passenger_container h1 {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 3px 3px 0 0;
+  background: var(--dark-colour);
+  padding: .5rem 1.5rem;
+  color: var(--offwhite-colour);
+}
+/* Dashboard Container */
+
+.main_dashboard_container  {
+  background: var(--offwhite-colour);
+}
+.dashboard_container {
+  width: var(--max-width);
+  margin: auto;
+  padding: 2rem 2rem;
+}
+.dashboard_container h1 {
+  margin-bottom: 2rem;
+}
+.dashboard_container h2 {
+  display: inline-block;
+  font-size: 1.2rem;
+  border-bottom: 3px solid var(--dark-colour);
+  padding-bottom: 1rem;
+}
+.bookingCard_showcase {
+  color: var(--offwhite-colour);
+  background: var(--dark-colour);
+  padding: 2rem;
+  margin-top: 1rem;
+  position: relative;
+}
+.bookingCard_showcase:before {
+  content: "";
+  background: url(https://res.cloudinary.com/seijihg/image/upload/v1568135279/lady_bug_air/FlightBackground_w4a9e3.jpg) no-repeat center center/cover;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  opacity: .2;
+}
+
+.bookingCard_showcase .bookingCard {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  justify-content: center;
+  align-items: center;
+}
+.bookingCard_showcase .bookingCard .content {
+  z-index: 1;
 }

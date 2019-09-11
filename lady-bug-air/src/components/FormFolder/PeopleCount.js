@@ -3,8 +3,8 @@ import React from 'react'
 const PeopleCount = ({addAdultHandler, removeAdultHandler, count}) => {
   return (
     <>
-    <div>
-      <span onClick={removeAdultHandler}> - </span>
+    <div className="passengers_number">
+      <div onClick={removeAdultHandler} className="m_p_icons"><i class="far fa-minus-square"></i></div>
       {count.length === 1 ? 
       <div>
         {count.length} Adult
@@ -12,7 +12,7 @@ const PeopleCount = ({addAdultHandler, removeAdultHandler, count}) => {
       <div>
         {count.length} Travellers
       </div>}
-      <span onClick={addAdultHandler}> + </span>
+      <div onClick={addAdultHandler} className="m_p_icons"><i class="far fa-plus-square"></i></div>
     </div>
     </>
   )

@@ -14,9 +14,9 @@ const SearchResults = ({searchResults}) => {
     }
   }
   return (
-    <div>
+    <>
       {RenderOfferCard()}
-    </div>
+    </>
   )
 }
 

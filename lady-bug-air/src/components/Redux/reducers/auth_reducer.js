@@ -40,6 +40,15 @@ const authReducer = (state = defaultState, action) => {
         ...state,
         signinForm: !state.signinForm
       }
+    case "UPDATE_USER_INFO_WITH_BOOKING":
+      console.log(action.booking)
+      return {
+        ...state,
+        userInfomation: {
+          ...state.userInfomation,
+          bookings: [...state.userInfomation.bookings, action.booking]
+        }
+      }
     default:
       return state
   }

@@ -1,26 +1,21 @@
 import React from 'react'
 
-const SegmentCard = ({arrival, departure, operatingCarrier, flightDuration}) => {
+const SegmentCard = ({arrival, departure, operatingCarrier, flightDuration, stops}) => {
   const RoundNumber = number => {
     return Number((number).toFixed(1))
   }
   return (
-    <div>
-      <div>
-        Departure: {departure.airportName}
-        Date: {departure.date}
-        Time: {departure.time}
+    <div className="segmentCard">
+      <div className="time">
+        <h2>{departure.time} — {arrival.time}</h2>
+        <p>{operatingCarrier.name}</p>
       </div>
       <div>
-        Arrival: {arrival.airportName}
-        Date: {arrival.date}
-        Time: {arrival.time}
+        <h2>{stops === 1 ? <p>direct</p> : <p>{stops - 1} stop</p>}</h2>
       </div>
       <div>
-        Operating Carrier: {operatingCarrier.name}
-      </div>
-      <div>
-        Flight Duration: {RoundNumber(flightDuration/60)} hours
+      <h2>{RoundNumber(flightDuration/60)}h</h2>
+        <p>{departure.airportCode} - {arrival.airportCode}</p>
       </div>
     </div>
   )

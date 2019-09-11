@@ -1,19 +1,20 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 
-const MenuCard = ({logoutHandler}) => {
+const MenuCard = ({logoutHandler, userInfomation}) => {
   return (
-    <div>
-      <NavLink exact to="/profile/dashboard" activeClassName="selected">
-        Dashboard
-      </NavLink>
-      <br></br>
-      <NavLink exact to="/profile/dashboard" activeClassName="selected">
-        Account
-      </NavLink>
-      <div onClick={logoutHandler}>
+    <div className="menuCard">
+      <li>
+        {userInfomation.email}
+      </li>
+      <li>
+        <NavLink exact to="/profile/dashboard" >
+          Dashboard
+        </NavLink>
+      </li>
+      <li onClick={logoutHandler} className="signin">
         Sign out
-      </div>
+      </li>
     </div>
   )
 }

@@ -5,6 +5,7 @@ import auth_actions from "../Redux/actions/auth_actions";
 
 import LoginCard from "./LoginCard";
 import SignupCard from "./SignupCard";
+import '../../css/animation.css'
 
 const expireDate = milliseconds => {
   const expiryDate = new Date(
@@ -111,7 +112,7 @@ const AuthenticationContainer = props => {
 
   const choicedRenderLoginSignupForm = () => {
     return (
-      <div>
+      <div className="form_authentication">
         {signinForm ? (
           <LoginCard
             loginSignupHandler={loginSignupHandler}

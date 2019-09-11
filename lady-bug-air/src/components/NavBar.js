@@ -1,35 +1,66 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import AuthenticationContainer from "./Authentication/AuthenticationContainer";
-import MenuDashboardContainer from "./UserDashboard/MenuDashboardContainer";
+import MenuCard from "./UserDashboard/MenuCard";
+import { CSSTransition } from "react-transition-group";
+import "../css/animation.css";
 
 class NavBar extends React.Component {
+  state = {
+    signForm: false
+  };
+  signFormHandler = () => {
+    this.setState({
+      signForm: !this.state.signForm
+    });
+  };
+  renderForm = () => {
+      return (
+        <div className="form_authentication_container">
+          <CSSTransition
+            in={this.state.signForm}
+            timeout={300}
+            classNames="fade"
+            unmountOnExit
+          >
+            <AuthenticationContainer />
+          </CSSTransition>
+        </div>
+      );
+  };
   render() {
     const { userLoggedIn, userInfomation, logoutHandler } = this.props;
     return (
       <>
         <nav id="navbar">
-          <h1 className="logo">
-            <i class="fas fa-bug"> | Lady Bug Air</i>
-          </h1>
-          <ul>
-            <li>
-              <NavLink exact to="/">
-                Flights
-              </NavLink>
-            </li>
-            {userLoggedIn ? (
+          <div className="div_logo">
+            <img
+              className="logo"
+              src="https://res.cloudinary.com/seijihg/image/upload/v1567870289/lady_bug_air/skysearch_orange_eehygy.png"
+              alt="Bear Bug sky search logo"
+            ></img>
+            <ul>
               <li>
-                  <MenuDashboardContainer logoutHandler={logoutHandler}/>
+                <NavLink exact to="/">
+                  Flights
+                </NavLink>
               </li>
+            </ul>
+          </div>
+          <ul>
+            {userLoggedIn ? (
+              <MenuCard
+                userInfomation={userInfomation}
+                logoutHandler={logoutHandler}
+              />
             ) : (
-              <li>Sign in</li>
+              <li className="signin" onClick={this.signFormHandler}>
+                Sign in
+              </li>
             )}
           </ul>
         </nav>
-        <div className="login_form">
-          <AuthenticationContainer />
-        </div>
+        {this.renderForm()}
       </>
     );
   }

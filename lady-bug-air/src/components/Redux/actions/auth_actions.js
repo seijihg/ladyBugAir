@@ -1,4 +1,3 @@
-import Api from "../../Api/Api"
 
 const logoutHandler = () => {
   return dispatch => {
@@ -26,11 +25,17 @@ const switchLoginSignupForm = () => {
     dispatch({type: "SWITCH_FORM"})
   }
 }
+const updateUserInformationAfterBooking = booking => {
+  return dispatch => {
+    dispatch({type: "UPDATE_USER_INFO_WITH_BOOKING", booking})
+  }
+}
 
 export default {
   logoutHandler,
   loginEmailDetail,
   loginPasswordDetail,
   updateUserAuthenticated,
-  switchLoginSignupForm
+  switchLoginSignupForm,
+  updateUserInformationAfterBooking
 }
