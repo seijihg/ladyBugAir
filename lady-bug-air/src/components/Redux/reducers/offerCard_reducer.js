@@ -14,7 +14,6 @@ const offerCardReducer = (state = defaultState, action) => {
       }
     case "DEAL_RESULTS":
       console.log("DEAL_RESULTS")
-      console.log(action.deal)
       return {
         ...state,
         isLoading: false,
@@ -23,7 +22,7 @@ const offerCardReducer = (state = defaultState, action) => {
     case "ADD_OBJ_CONTROLLED_INPUT":
       return {
         ...state,
-        passengers: [...state.passengers, action.obj]
+        passengers: action.obj
       }
     case "INPUT_FIELDS":
       const value = Object.keys(action.obj)[1]

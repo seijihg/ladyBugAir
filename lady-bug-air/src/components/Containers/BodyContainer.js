@@ -1,5 +1,4 @@
 import React from 'react'
-import '../../css/Body.css';
 import FormContainer from '../FormFolder/FormContainer';
 import DestinationContainer from '../DestinationsFolder/DestinationContainer';
 

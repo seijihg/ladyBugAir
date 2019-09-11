@@ -1,5 +1,4 @@
 import React from "react";
-import "./css/App.css";
 import { Route, Redirect } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import BodyContainer from "./components/Containers/BodyContainer";
@@ -20,10 +19,11 @@ function App(props) {
         props.updateUserAuthenticated
       );
     }
-  }, []);
+  }, [props.updateUserAuthenticated]);
   const navBarLogoutHandler = event => {
     event.preventDefault();
     props.logoutHandler();
+    props.history.push("/")
   };
   const profilePageRouteDirectDependsOnAuth = () => {
     if (props.userLoggedIn === true) {
@@ -52,7 +52,7 @@ function App(props) {
           logoutHandler={navBarLogoutHandler}
         />
       </div>
-      <div class="container">
+      <div className="container">
         <Route exact path="/" render={props => <BodyContainer {...props} />} />
         <div className="search_book_main_container_top">
         <div className="search_book_main_container">

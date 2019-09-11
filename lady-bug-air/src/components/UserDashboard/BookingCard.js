@@ -4,11 +4,14 @@ const capitalize = (s) => {
   return s.charAt(0).toUpperCase() + s.slice(1)
 }
 const BookingCard = ({details, passengers, fullName}) => {
-  const departurePlace = details[0].journeys[0].flightSegments[0].departure.airportName
-  const dateDeparture = details[0].journeys[0].flightSegments[0].departure.date
-  const lenghtJourney = details[0].journeys.length - 1
-  const lengthSegment = details[0].journeys[lenghtJourney].flightSegments.length - 1
-  const arrivalPlace = details[0].journeys[lenghtJourney].flightSegments[lengthSegment].departure.airportName
+  const checkedDetails = Array.isArray(details) ? details : [details]
+
+  const departurePlace = checkedDetails[0].journeys[0].flightSegments[0].departure.airportName
+  const dateDeparture = checkedDetails[0].journeys[0].flightSegments[0].departure.date
+  const lenghtJourney = checkedDetails[0].journeys.length - 1
+  const lengthSegment = checkedDetails[0].journeys[lenghtJourney].flightSegments.length - 1
+  const arrivalPlace = checkedDetails[0].journeys[lenghtJourney].flightSegments[lengthSegment].departure.airportName
+
   const passengerNames = () => {
     return passengers.map(pass => <p>{capitalize(pass.title)} {pass.first_name} {pass.last_name}</p>)
   }

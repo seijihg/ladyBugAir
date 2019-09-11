@@ -3,9 +3,10 @@ import { connect } from "react-redux";
 import { NavLink } from 'react-router-dom'
 import SegmentCardBook from "./SegmetCardBook";
 import TripSummaryCard from "./TripSummaryCard";
+import MainLoadingPage from "../MainLoadingPage";
 
 const ViewDealContainer = ({ isLoading, details, userLoggedIn }) => {
-  const status = isLoading ? "Loading..." : "View Deal";
+  const status = isLoading ? <MainLoadingPage /> : null;
 
   const getJourneys = () => {
     return details.journeys.map(journey =>

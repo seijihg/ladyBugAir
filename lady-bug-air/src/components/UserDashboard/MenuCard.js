@@ -12,11 +12,6 @@ const MenuCard = ({logoutHandler, userInfomation}) => {
           Dashboard
         </NavLink>
       </li>
-      <li>
-        <NavLink exact to="/profile/dashboard" >
-          Account
-        </NavLink>
-      </li>
       <li onClick={logoutHandler} className="signin">
         Sign out
       </li>

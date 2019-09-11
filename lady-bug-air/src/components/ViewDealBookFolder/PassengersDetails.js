@@ -10,20 +10,22 @@ const PassengersDetails = props => {
     addPassengerInputController,
     onChangeInputFields
   } = props;
+
   React.useEffect(() => {
     if (details === null) {
       return;
     }
-    details.passengers.forEach((pass, idx) =>
-      addPassengerInputController({
-        idx: idx,
-        title: "",
-        first_name: "",
-        last_name: "",
-        phone: "",
-        email: ""
-      })
-    );
+    const passengers = details.passengers.map((pass,idx) => new Object ({
+      idx: idx,
+      title: "",
+      first_name: "",
+      last_name: "",
+      phone: "",
+      email: ""
+    }) )
+
+    addPassengerInputController(passengers)
+   
   }, []);
 
   const passengerFormHandlerInput = (event, idx) => {

@@ -105,7 +105,6 @@ class FormContainer extends React.Component {
       dateFrom,
       dateTo,
       arrival_value,
-      isLoading,
       loadSuggestions,
       clearSuggestions,
       updateInputValue,
@@ -113,8 +112,6 @@ class FormContainer extends React.Component {
       loadSuggestionsArrival,
       updateInputValueArrival
     } = this.props;
-
-    const status = isLoading ? "Loading..." : "Type to load suggestions";
 
     return (
       <div className="form_container">
