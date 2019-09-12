@@ -3,9 +3,12 @@ import { connect } from "react-redux";
 import FormContainer from '../FormFolder/FormContainer';
 import SearchResults from './SearchResults';
 import MainLoadingPage from '../MainLoadingPage';
+import loc_actions from '../Redux/actions/locations_actions'
+
 
 const SearchResultsContainer = (props) => {
-  const {searchResults, isLoading} = props
+  const {searchResults, isLoading, logoList, findLogo} = props
+  
   return (
     <div>
       {isLoading ? <MainLoadingPage /> : null}
@@ -15,10 +18,16 @@ const SearchResultsContainer = (props) => {
   )
 }
 const mapStateToProps = state => {
-  const { searchResults, isLoading } = state.locReducer
+  const { searchResults, isLoading, logoList } = state.locReducer
   return {
     searchResults,
     isLoading,
+    logoList
   }
 }
-export default connect(mapStateToProps) (SearchResultsContainer)
+const mapDispatchToProps = dispatch => {
+  return {
+    findLogo: (logo) => dispatch(loc_actions.findLogo(logo))
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps) (SearchResultsContainer)

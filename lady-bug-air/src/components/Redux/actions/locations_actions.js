@@ -1,4 +1,5 @@
 import API from "../../Api/Api";
+import { uniq } from "lodash"
 
 //-----> UTILS
 function escapeRegexCharacters(str) {
@@ -112,6 +113,13 @@ const flightClass = (classtype) => {
   }
 }
 //<-----END
+const findLogo = (name) => {
+  return dispatch => {
+    dispatch({type:"LOGO_LOADING"})
+    API.getLogo(name)
+    .then(logo => dispatch({type:"LOGO_LOADED", logo}))
+  }
+}
 export default { 
   loadSuggestions, 
   updateInputValue, 
@@ -124,5 +132,6 @@ export default {
   addAdult,
   removeAdult,
   flightClass,
-  searchFlights
+  searchFlights,
+  findLogo
 };
