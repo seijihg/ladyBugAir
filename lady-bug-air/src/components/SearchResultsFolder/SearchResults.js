@@ -1,7 +1,8 @@
 import React from 'react'
 import OfferCard from './OfferCard';
 
-const SearchResults = ({searchResults}) => {
+const SearchResults = ({searchResults, logoList}) => {
+  
   const RenderOfferCard = () => {
     if (!Array.isArray(searchResults)) {
       return (

@@ -67,6 +67,10 @@ const bookFlight = (bookFlightBody, token) => {
 const getLogo = iata => {
   return fetch(logoApi + iata)
   .then(resp => resp.json())
+  .then(data => {
+    console.log(data)
+    return data
+  })
 }
 
 export default {
