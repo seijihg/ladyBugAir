@@ -1,3 +1,6 @@
+import { uniq } from "lodash"
+
+
 const defaultState = {
   value: '',
   arrival_value: "",
@@ -8,7 +11,8 @@ const defaultState = {
   notsingle: "return",
   people: [{type: "Adult"}],
   classType: "economy",
-  searchResults: []
+  searchResults: [],
+  logoList: []
 };
 
 const locReducer = (state = defaultState, action) => {
@@ -101,11 +105,34 @@ const locReducer = (state = defaultState, action) => {
     case "SEARCH_FLIGHTS_RESULTS":
       console.log("SEARCH_FLIGHTS_RESULTS")
       console.log(action.flights)
+      const level1 = action.flights.flights.flights
+      const level2 = level1.map(elem=>elem.flightSegments)
+      const flattened = [].concat.apply([],level2)
+      const logosList= flattened.map(elem => elem.marketingCarrier.airlineId)
+      const filtered = uniq(logosList)
+      // const results = Promise.all(logoList.map(logo => API.getLogo(logo)))
+      // .then(data => {
+      //   return data.map(lg => lg.data !== "" ? lg.data[0].logo : lg.data)
+      // })
+      
       return {
         ...state,
         searchResults: action.flights.flights,
-        isLoading: false
+        isLoading: false,
+        logoList: filtered
       }
+      case "LOGO_LOADING":
+        return {
+          ...state,
+          isLoading: true
+        }
+      case "LOGO_LOADED":
+        debugger
+        return {
+          ...state,
+          logoList: [...state.logoList, action.logo],
+          isLoading: false
+        }
     default:
       return state;
   }

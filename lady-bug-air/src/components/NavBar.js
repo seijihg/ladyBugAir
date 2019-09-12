@@ -36,7 +36,7 @@ class NavBar extends React.Component {
           <div className="div_logo">
             <img
               className="logo"
-              src="https://res.cloudinary.com/seijihg/image/upload/v1567870289/lady_bug_air/skysearch_orange_eehygy.png"
+              src="https://res.cloudinary.com/seijihg/image/upload/v1568279836/lady_bug_air/skysearch_orange_eehygy.png"
               alt="Bear Bug sky search logo"
             ></img>
             <ul>
